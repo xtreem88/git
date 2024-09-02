@@ -34,6 +34,12 @@ func main() {
 			os.Exit(1)
 		}
 		git.LsTree(os.Args[3])
+	case "write-tree":
+		if len(os.Args) != 2 {
+			fmt.Fprintf(os.Stderr, "usage: mygit write-tree\n")
+			os.Exit(1)
+		}
+		git.WriteTree()
 	default:
 		fmt.Fprintf(os.Stderr, "Unknown command %s\n", command)
 		os.Exit(1)
