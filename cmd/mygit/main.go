@@ -40,6 +40,12 @@ func main() {
 			os.Exit(1)
 		}
 		git.WriteTree()
+	case "commit-tree":
+		if len(os.Args) != 7 || os.Args[3] != "-p" || os.Args[5] != "-m" {
+			fmt.Fprintf(os.Stderr, "usage: mygit commit-tree <tree-sha> -p <commit-sha> -m <message>\n")
+			os.Exit(1)
+		}
+		git.CommitTree(os.Args[2], os.Args[4], os.Args[6])
 	default:
 		fmt.Fprintf(os.Stderr, "Unknown command %s\n", command)
 		os.Exit(1)
